@@ -1,0 +1,288 @@
+{
+  "info": {
+    "_postman_id": "7a87cd02-8cdf-41ee-aaae-37e52aad942b",
+    "name": "Donantes API – Colección Postman",
+    "description": "### **Temática del proyecto**\n\nLa temática seleccionada para este servicio web es un sistema de gestión de donantes de sangre.  \nEste sistema tiene como objetivo centralizar y organizar la información relacionada con los donantes, permitiendo que un servicio sanitario, hospital o banco de sangre pueda consultar, registrar y actualizar datos esenciales sobre personas disponibles para donar sangre.\n\n### **¿Qué puedes hacer ?**\n\nEl servicio ofrecerá una API con operaciones básicas de mantenimiento sobre la entidad Donantes. Estas  \noperaciones siguen el estándar CRUD y estarán accesibles mediante endpoints REST. Todas las peticiones y respuestas utilizarán el formato JSON y códigos HTTP adecuados.\n\n**Como probar la api**\n\nArrancar el servidor de Laravel desde la terminal en la raíz del proyecto:\n\nphp artisan serve\n\n**Todas las peticiones a la API parten de la siguiente ruta base:**\n\n[http://127.0.0.1:8000/api/donantes/](http://127.0.0.1:8000/api/donantes/)\n\n1. **Obtener todos los donantes**: Verás la lista completa de todos los donantes.\n    \n2. **Obtener un donante por su ID**: Obtendrás los detalles de un donante en concreto.\n    \n3. **Crear un nuevo donante**: Podrás añadir un nuevo donante.\n    \n4. **Actualizar datos del donante por su ID**: Actualiza los datos de un donante específico.\n    \n5. **Eliminar un donante por su ID**: Elimina un donante de forma definitiva.\n    \n6. **Crear una nueva donación**: Podrás añadir una nueva donación.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40360254"
+  },
+  "item": [
+    {
+      "name": "Obtener todos los donantes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/donantes/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "donantes",
+            ""
+          ]
+        },
+        "description": "Esta solicitud GET permite recuperar el listado completo de donantes almacenados en el sistema. Se utiliza para consultas generales o para mostrar toda la información disponible.\n\n**Caso de uso:** al pulsar enviar debería devolver la información de todos los donantes disponibles."
+      },
+      "response": []
+    },
+    {
+      "name": "Obtener un donante por su ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/donantes/{{id}}",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "donantes",
+            "{{id}}"
+          ]
+        },
+        "description": "Esta solicitud GET permite consultar los datos personales y sus donaciones (si las tiene) de un donante concreto mediante un ID único. Se usa cuando se necesita acceder a un registro específico.\n\n**Caso de uso:** Si se cambia el valor de `1` en la URL al ID del donante que quieres consultar y debería devolver los detalles de ese donante concreto."
+      },
+      "response": []
+    },
+    {
+      "name": "Crear un nuevo donante",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Eneko\",\n  \"apellidos\": \"Arrieta Larrinaga\",\n  \"grupo_sanguineo\": \"O-\",\n  \"contacto\": \"688452917\",\n  \"fecha_nacimiento\": \"1991-07-12\",\n  \"ciudad_residencia\": \"Vitoria-Gasteiz\",\n  \"observaciones\": \"Donante habitual, sin alergias conocidas\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/donantes/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "donantes",
+            ""
+          ]
+        },
+        "description": "Esta solicitud POST permite agregar un nuevo donante al sistema enviando su información en formato JSON.\n\n**Caso de uso:** En este caso, en el cuerpo de la solicitud se recibiría un JSON con todos los campos correspondientes al nuevo donante que se quiere guardar."
+      },
+      "response": []
+    },
+    {
+      "name": "Actualizar datos del donante por su ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Successful PUT request\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"ciudad_residencia\": \"Zaragoza\",\n  \"observaciones\": \"No puede donar actualmente. Motivo: cambio reciente de ciudad de residencia\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/donantes/{{id}}",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "donantes",
+            "{{id}}"
+          ]
+        },
+        "description": "Esta solicitud PUT permite modificar la información de un donante ya registrado mediante su ID. Se usa para corregir datos o actualizar información como la fecha de última donación.\n\n**Caso de uso:** Si se cambia el valor de `1` al ID del donante que quieres actualizar, editando, por ejemplo `ultima_donacion`, `ciudad_residencia` y `observaciones` en el cuerpo de la solicitud con los valores nuevos se modificaría el contenido de ese donante concreto."
+      },
+      "response": []
+    },
+    {
+      "name": "Eliminar un donante por su ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Successful DELETE request\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/donantes/{{id}}",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "donantes",
+            "{{id}}"
+          ]
+        },
+        "description": "Esta solicitud DELETE permite eliminar del sistema al donante identificado por un ID. Se usa cuando un donante ya no participa en el programa o por depuración de datos.\n\n**Caso de uso:** si se cambia el valor de `1` al ID del donante que quieres eliminar, se borrará del sistema ese donante concreto y ya no aparecerá en los registros."
+      },
+      "response": []
+    },
+    {
+      "name": "Crear una nueva donación",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id_donante\": 5,\r\n  \"fecha_donacion\": \"2025-12-10\",\r\n  \"centro\": \"PRUEBA: Hospital Universitario\",\r\n  \"tipo_donacion\": \"Sangre total\",\r\n  \"cantidad_ml\": 450\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/donantes/donaciones",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "donantes",
+            "donaciones"
+          ]
+        },
+        "description": "Esta solicitud POST permite agregar una nueva donación al sistema enviando su información en formato JSON.\n\n**Caso de uso:** En este caso, en el cuerpo de la solicitud se recibiría un JSON con todos los campos correspondientes a la nueva donación que se quiere guardar."
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "id",
+      "value": "1"
+    }
+  ]
+}
