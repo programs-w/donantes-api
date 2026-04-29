@@ -76,6 +76,7 @@ cd donantes-sangre
 cp .env.example .env
 
 # Configurar la base de datos en .env
+# (Asegúrate de tener MySQL/MariaDB instalado y funcionando)
 DB_DATABASE=donantes_bbdd
 DB_USERNAME=root
 DB_PASSWORD=
@@ -133,21 +134,6 @@ php artisan serve
 | tipo_donacion  | VARCHAR(20)   | Sangre total, plasma, plaquetas      |
 | cantidad_ml    | INT           | Cantidad donada en ml                |
 
-
-## 💡 Competencias desarrolladas
-- Desarrollo de API RESTful con Laravel siguiendo el patrón MVC
-
-- Uso de Eloquent ORM para consultas a base de datos sin SQL manual
-
-- Relaciones entre modelos (hasMany / belongsTo)
-
-- Validación de datos y manejo de errores con códigos HTTP (200, 201, 400, 404, 422, 500)
-
-- Estandarización de respuestas JSON (status, code, message, data)
-
-- Persistencia de datos en MySQL
-
-- Comunicación síncrona mediante peticiones HTTP
 
 ## Endpoints de la API
 
