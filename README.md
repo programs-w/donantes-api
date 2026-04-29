@@ -76,7 +76,7 @@ cd donantes-sangre
 cp .env.example .env
 
 # Configurar la base de datos en .env
-# (Asegúrate de tener MySQL/MariaDB instalado y funcionando)
+# (Asegúrate de tener MySQL instalado y funcionando)
 DB_DATABASE=donantes_bbdd
 DB_USERNAME=root
 DB_PASSWORD=
